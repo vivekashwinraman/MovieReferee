@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.vraman.moviereferee.adapters.ListViewAdapter;
 import com.vraman.moviereferee.adapters.MovieViewAdapter;
 
 import java.util.ArrayList;
@@ -16,8 +17,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView movieRecyclerView;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView trendingRecyclerView;
+    private RecyclerView listRecyclerView;
+    private RecyclerView.LayoutManager movieLayoutManager;
+    private RecyclerView.LayoutManager trendingLayoutManager;
+    private RecyclerView.LayoutManager listLayoutManager;
     private MovieViewAdapter movieViewAdapter;
+    private MovieViewAdapter trendingViewAdapter;
+    private ListViewAdapter listViewAdapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,12 +51,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        layoutManager =  new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        movieLayoutManager =  new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        trendingLayoutManager =  new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        listLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
         movieViewAdapter = new MovieViewAdapter(new ArrayList<String>());
+        trendingViewAdapter = new MovieViewAdapter(new ArrayList<String>());
+        listViewAdapter =new ListViewAdapter(new ArrayList<String>());
 
         movieRecyclerView = (RecyclerView) findViewById(R.id.movieRecyclerView);
-        movieRecyclerView.setLayoutManager(layoutManager);
+        movieRecyclerView.setLayoutManager(movieLayoutManager);
         movieRecyclerView.setAdapter(movieViewAdapter);
+
+        trendingRecyclerView = (RecyclerView) findViewById(R.id.trendingRecyclerView);
+        trendingRecyclerView.setLayoutManager(trendingLayoutManager);
+        trendingRecyclerView.setAdapter(trendingViewAdapter);
+
+        listRecyclerView = (RecyclerView) findViewById(R.id.listRecyclerView);
+        listRecyclerView.setLayoutManager(listLayoutManager);
+        listRecyclerView.setAdapter(listViewAdapter);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
