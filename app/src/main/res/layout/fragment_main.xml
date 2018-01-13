@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/trending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/medium_margin"
+        android:textStyle="bold"
+        android:text="@string/trending"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/trendingRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/trending"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/latest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trendingRecyclerView"
+        android:layout_marginLeft="@dimen/medium_margin"
+        android:textStyle="bold"
+        android:text="@string/latest"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/movieRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/latest"
+        android:layout_marginTop="@dimen/small_margin">
+    </android.support.v7.widget.RecyclerView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movieRecyclerView"
+        android:layout_marginTop="@dimen/small_margin">
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>
+</ScrollView>

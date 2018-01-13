@@ -1,11 +1,14 @@
 package com.vraman.moviereferee.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.vraman.moviereferee.MovieDetailActivity;
 import com.vraman.moviereferee.R;
 
 import java.util.List;
@@ -17,8 +20,10 @@ import java.util.List;
 public class ListViewAdapter  extends RecyclerView.Adapter<ListViewAdapter.ViewHolder> {
 
     private List<String> itemList;
+    private Context context;
 
-    public ListViewAdapter(List<String> itemList) {
+    public ListViewAdapter(List<String> itemList, Context context) {
+        this.context = context;
         this.itemList = itemList;
         this.itemList.add("International");
         this.itemList.add("Bollywood");
@@ -45,7 +50,7 @@ public class ListViewAdapter  extends RecyclerView.Adapter<ListViewAdapter.ViewH
         return itemList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView text;
 
@@ -54,5 +59,10 @@ public class ListViewAdapter  extends RecyclerView.Adapter<ListViewAdapter.ViewH
             text = itemView.findViewById(R.id.text);
         }
 
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, MovieDetailActivity.class);
+            context.startActivity(intent);
+        }
     }
 }
