@@ -14,6 +14,7 @@ import com.vraman.moviereferee.adapters.ListViewAdapter;
 import com.vraman.moviereferee.adapters.MovieViewAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +59,13 @@ public class MainFragment extends Fragment {
         listLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         movieViewAdapter = new MovieViewAdapter(new ArrayList<String>(), context);
         trendingViewAdapter = new MovieViewAdapter(new ArrayList<String>(), context);
-        listViewAdapter =new ListViewAdapter(new ArrayList<String>(), context);
+        List<String> itemList = new ArrayList<>();
+        itemList.add("International");
+        itemList.add("Bollywood");
+        itemList.add("Tamil");
+        itemList.add("Older");
+        itemList.add("Other");
+        listViewAdapter =new ListViewAdapter(itemList, context,R.layout.list_view_item);
         movieRecyclerView = view.findViewById(R.id.movieRecyclerView);
         movieRecyclerView.setLayoutManager(movieLayoutManager);
         movieRecyclerView.setAdapter(movieViewAdapter);

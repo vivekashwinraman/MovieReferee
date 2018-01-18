@@ -21,20 +21,17 @@ public class ListViewAdapter  extends RecyclerView.Adapter<ListViewAdapter.ViewH
 
     private List<String> itemList;
     private Context context;
+    private int resourceLayout;
 
-    public ListViewAdapter(List<String> itemList, Context context) {
+    public ListViewAdapter(List<String> itemList, Context context, int resourceLayout) {
         this.context = context;
         this.itemList = itemList;
-        this.itemList.add("International");
-        this.itemList.add("Bollywood");
-        this.itemList.add("Tamil");
-        this.itemList.add("Older");
-        this.itemList.add("Other");
+        this.resourceLayout = resourceLayout;
     }
 
     @Override
     public ListViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(resourceLayout, parent, false);
         ListViewAdapter.ViewHolder viewHolder = new ListViewAdapter.ViewHolder(view);
         return viewHolder;
     }
