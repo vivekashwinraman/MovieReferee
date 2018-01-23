@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vraman.moviereferee.R;
-import com.vraman.moviereferee.adapters.ListViewAdapter;
+import com.vraman.moviereferee.adapters.MovieListViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
 public class NotificationsFragment extends Fragment {
 
     private LinearLayoutManager notificationLayoutManager;
-    private ListViewAdapter listViewAdapter;
+    private MovieListViewAdapter movieListViewAdapter;
     private RecyclerView listRecyclerView;
 
     /**
@@ -53,10 +53,10 @@ public class NotificationsFragment extends Fragment {
         itemList.add("Notification 1");
         itemList.add("Notification 2");
         itemList.add("Notification 3");
-        listViewAdapter =new ListViewAdapter(itemList, getActivity(), R.layout.fragment_item);
+        movieListViewAdapter =new MovieListViewAdapter(itemList, getActivity(), R.layout.fragment_item);
         listRecyclerView = view.findViewById(R.id.notificationList);
         listRecyclerView.setLayoutManager(notificationLayoutManager);
-        listRecyclerView.setAdapter(listViewAdapter);
+        listRecyclerView.setAdapter(movieListViewAdapter);
         return view;
     }
 
