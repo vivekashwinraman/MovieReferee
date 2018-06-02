@@ -8,4 +8,59 @@
     tools:context="com.vraman.moviereferee.MovieDetailActivity"
     tools:showIn="@layout/activity_movie_detail">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/small_margin">
+
+        <ImageView
+            android:id="@+id/moviePoster"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/moviePoster"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_centerHorizontal="true"
+            android:text="test" />
+
+        <TextView
+            android:id="@+id/movieOverview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movieTitle"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_centerHorizontal="true"
+            android:text="test" />
+
+        <TextView
+            android:id="@+id/releaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/movieOverview"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="test" />
+
+        <TextView
+            android:id="@+id/voteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/releaseDate"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="test" />
+
+        <TextView
+            android:id="@+id/voteAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/voteCount"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="test" />
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

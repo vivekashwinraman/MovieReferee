@@ -7,11 +7,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+import com.vraman.moviereferee.apis.MovieDataServiceImpl;
+import com.vraman.moviereferee.apis.callbacks.VolleyCallback;
+import com.vraman.moviereferee.apis.models.MovieDetailModel;
+import com.vraman.moviereferee.apis.models.MovieListModel;
 import com.vraman.moviereferee.fragments.AccountFragment;
 import com.vraman.moviereferee.fragments.MainFragment;
 import com.vraman.moviereferee.fragments.NotificationsFragment;
+
+import java.util.List;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
     private Context context = this;

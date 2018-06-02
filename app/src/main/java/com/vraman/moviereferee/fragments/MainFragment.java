@@ -4,14 +4,23 @@ package com.vraman.moviereferee.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.gson.Gson;
 import com.vraman.moviereferee.R;
 import com.vraman.moviereferee.adapters.ListViewAdapter;
 import com.vraman.moviereferee.adapters.MovieViewAdapter;
+import com.vraman.moviereferee.apis.MovieDataServiceImpl;
+import com.vraman.moviereferee.apis.callbacks.VolleyCallback;
+import com.vraman.moviereferee.apis.models.MovieDetailModel;
+import com.vraman.moviereferee.apis.models.MovieListModel;
+import com.vraman.moviereferee.managers.ImageManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +41,7 @@ public class MainFragment extends Fragment {
     private MovieViewAdapter movieViewAdapter;
     private MovieViewAdapter trendingViewAdapter;
     private ListViewAdapter listViewAdapter;
+    private ArrayList<MovieDetailModel> movieDetailModels = new ArrayList<>();
 
     private Context context;
     public MainFragment() {
@@ -48,6 +58,7 @@ public class MainFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.context = getActivity();
+
     }
 
     @Override
@@ -57,8 +68,8 @@ public class MainFragment extends Fragment {
         movieLayoutManager =  new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         trendingLayoutManager =  new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         listLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        movieViewAdapter = new MovieViewAdapter(new ArrayList<String>(), context);
-        trendingViewAdapter = new MovieViewAdapter(new ArrayList<String>(), context);
+        movieViewAdapter = new MovieViewAdapter(movieDetailModels, context);
+        trendingViewAdapter = new MovieViewAdapter(movieDetailModels, context);
         List<String> itemList = new ArrayList<>();
         itemList.add("International");
         itemList.add("Bollywood");
@@ -77,6 +88,20 @@ public class MainFragment extends Fragment {
         listRecyclerView = view.findViewById(R.id.listRecyclerView);
         listRecyclerView.setLayoutManager(listLayoutManager);
         listRecyclerView.setAdapter(listViewAdapter);
+
+        movieDetailModels = (ArrayList<MovieDetailModel>) new MovieDataServiceImpl(getActivity()).getMovieList(new VolleyCallback() {
+            @Override
+            public Object onSuccess(String response) {
+                MovieListModel movieListModel = new Gson().fromJson(response, MovieListModel.class);
+                for(MovieDetailModel movieDetailModel : movieListModel.getMovieList())
+                    Log.i("MainActivity", movieListModel.getMovieList().get(0).getTitle());
+                movieViewAdapter.setMovieList(movieListModel.getMovieList());
+                trendingViewAdapter.setMovieList(movieListModel.getMovieList());
+                movieViewAdapter.notifyDataSetChanged();
+                trendingViewAdapter.notifyDataSetChanged();
+                return movieListModel.getMovieList();
+            }
+        });
         return view;
     }
 
